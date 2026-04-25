@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coinfetti | Global Pricing Explorer</title>
+    <title>Coinfetti | Global Financial Storytelling</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -19,8 +19,17 @@
             background-color: #ffffff;
             color: #063c52;
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
         
+        .view-section { display: none; }
+        .view-section.active { display: block; animation: fadeIn 0.5s ease-out; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .chart-container {
             position: relative;
             width: 100%;
@@ -31,11 +40,6 @@
 
         .tab-content { display: none; }
         .tab-content.active { display: block; animation: fadeIn 0.4s ease-out; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
 
         .custom-radio:checked + div, .custom-checkbox:checked + div {
             border-color: var(--coinfetti-blue);
@@ -57,335 +61,366 @@
 
         .btn-hover:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px -5px rgba(6, 60, 82, 0.2);
+            box-shadow: 0 15px 30px -5px rgba(6, 60, 82, 0.2);
         }
+
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--coinfetti-blue);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link.active-nav::after { width: 100%; }
     </style>
 </head>
 <body class="antialiased selection:bg-[#fff975] selection:text-[#063c52]">
 
+    <!-- Header -->
     <header class="bg-white border-b-4 border-[#063c52] sticky top-0 z-50 shadow-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <div class="flex flex-col group cursor-default">
-                <span class="text-3xl font-black text-[#063c52] tracking-tighter uppercase italic leading-none transition-all group-hover:tracking-normal">Coinfetti</span>
+            <div class="flex flex-col cursor-pointer" onclick="switchView('pricing')">
+                <span class="text-3xl font-black text-[#063c52] tracking-tighter uppercase italic leading-none">Coinfetti</span>
                 <span class="text-[8px] font-bold text-[#063c52] uppercase tracking-[0.2em] mt-1 opacity-70">Global Finance Solutions</span>
             </div>
             
-            <div class="flex items-center space-x-2 md:space-x-4">
-                <nav class="hidden lg:flex space-x-6 text-[10px] font-black uppercase tracking-widest text-[#063c52] mr-6">
-                    <a href="#calculator" class="hover:bg-[#fff975] px-3 py-1 transition-all">Package Builder</a>
-                    <a href="#details" class="hover:bg-[#fff975] px-3 py-1 transition-all">Services</a>
+            <div class="flex items-center space-x-4 md:space-x-8">
+                <nav class="hidden md:flex space-x-8 text-[10px] font-black uppercase tracking-widest text-[#063c52]">
+                    <button onclick="switchView('pricing')" class="nav-link active-nav" id="nav-pricing">Pricing Explorer</button>
+                    <button onclick="switchView('chat')" class="nav-link" id="nav-chat">Let's Chat</button>
                 </nav>
-                <a href="https://coinfetti4.wordpress.com/lets-chat/" target="_blank" class="hidden sm:block bg-[#063c52] text-white px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest btn-hover transition-all">Let's Chat</a>
-                <a href="https://coinfetti.online" target="_blank" class="bg-[#fff975] border-2 border-[#063c52] text-[#063c52] px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest btn-hover transition-all">Website</a>
+                <a href="mailto:sales@coinfetti.online" class="bg-[#063c52] text-white px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest btn-hover transition-all">Direct Email</a>
             </div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        
-        <section class="text-center max-w-4xl mx-auto mb-28">
-            <h2 class="text-[#063c52] font-black italic text-xl mb-8 tracking-tight">"Your Coins Called — They Want a Little Confetti !!!"</h2>
-            <h1 class="text-3xl md:text-6xl font-black text-[#063c52] mb-12 leading-tight uppercase italic tracking-tighter">
-                A financial story <br><span class="bg-[#fff975] px-4 shadow-[-8px_8px_0px_0px_#063c52]">well told</span><br>
-                is a business well managed.
-            </h1>
-            <p class="text-xl font-medium text-stone-600 mb-14 max-w-2xl mx-auto leading-relaxed">Providing international SMEs with the clarity and digital foundation needed to thrive in any market.</p>
+    <!-- PRICING VIEW -->
+    <section id="pricing-view" class="view-section active">
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             
-            <div class="flex flex-wrap justify-center gap-6">
-                <a href="https://coinfetti4.wordpress.com/lets-chat/" target="_blank" class="bg-[#063c52] text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-[#fff975] hover:text-[#063c52] transition-all shadow-2xl btn-hover">Let's Chat Now</a>
-                <button onclick="document.getElementById('calculator').scrollIntoView({behavior: 'smooth'})" class="border-2 border-[#063c52] px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-stone-50 transition-all btn-hover">Explore Pricing</button>
-            </div>
-        </section>
-
-        <section id="calculator" class="mb-28 scroll-mt-24">
-            <div class="bg-white rounded-[4rem] shadow-[0_40px_120px_rgba(6,60,82,0.15)] border-2 border-[#063c52] overflow-hidden">
-                <div class="grid grid-cols-1 lg:grid-cols-12">
-                    
-                    <div class="lg:col-span-7 p-10 md:p-16 bg-stone-50/40">
-                        <div class="flex items-center space-x-6 mb-14">
-                            <div class="w-4 h-14 bg-[#063c52] rounded-full shadow-lg"></div>
-                            <h2 class="text-4xl font-black text-[#063c52] uppercase italic tracking-tight">The Coin Builder</h2>
-                        </div>
-                        
-                        <div class="space-y-16" id="calculator-form">
-                            <div>
-                                <h3 class="text-[11px] font-black tracking-[0.3em] text-stone-400 uppercase mb-8 flex items-center">
-                                    <span class="mr-4 bg-[#063c52] text-[#fff975] w-8 h-8 flex items-center justify-center rounded-xl font-black text-xs shadow-md">01</span> Yearly Reporting
-                                </h3>
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                    <label class="relative cursor-pointer group">
-                                        <input type="radio" name="financial" value="500" class="custom-radio peer sr-only" data-label="Full Global FS">
-                                        <div class="p-8 rounded-[2rem] border-2 border-stone-200 transition-all bg-white hover:border-[#063c52] peer-checked:border-[#063c52] group-hover:shadow-lg">
-                                            <div class="font-black text-[#063c52] uppercase text-[10px] mb-3 tracking-widest opacity-60">Full Package</div>
-                                            <div class="text-[#063c52] font-black text-5xl">$500</div>
-                                            <div class="text-[10px] text-stone-500 mt-5 font-black uppercase italic tracking-tighter">Annual FS + Mgmt Report</div>
-                                        </div>
-                                    </label>
-                                    <label class="relative cursor-pointer group">
-                                        <input type="radio" name="financial" value="200" class="custom-radio peer sr-only" data-label="Core FS">
-                                        <div class="p-8 rounded-[2rem] border-2 border-stone-200 transition-all bg-white hover:border-[#063c52] peer-checked:border-[#063c52] group-hover:shadow-lg">
-                                            <div class="font-black text-[#063c52] uppercase text-[10px] mb-3 tracking-widest opacity-60">Statements Only</div>
-                                            <div class="text-[#063c52] font-black text-5xl">$200</div>
-                                            <div class="text-[10px] text-stone-500 mt-5 font-black uppercase italic tracking-tighter">Core Financial Data</div>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div>
-                                <h3 class="text-[11px] font-black tracking-[0.3em] text-stone-400 uppercase mb-8 flex items-center">
-                                    <span class="mr-4 bg-[#063c52] text-[#fff975] w-8 h-8 flex items-center justify-center rounded-xl font-black text-xs shadow-md">02</span> Maintenance
-                                </h3>
-                                <div class="space-y-6">
-                                    <label class="relative flex items-start cursor-pointer group">
-                                        <input type="checkbox" name="monthly_bookkeeping" value="150" class="custom-checkbox peer sr-only" data-label="Bookkeeping (Fixed)">
-                                        <div class="w-full p-8 rounded-[2rem] border-2 border-stone-200 transition-all bg-white hover:border-[#063c52] peer-checked:border-[#063c52] flex justify-between items-center group-hover:shadow-lg">
-                                            <div>
-                                                <div class="font-black text-[#063c52] uppercase text-[10px] tracking-widest mb-1">Standard Maintenance</div>
-                                                <div class="text-[11px] text-stone-400 font-bold italic">Standard 50 transactions per month</div>
-                                            </div>
-                                            <div class="text-[#063c52] font-black text-4xl">$150<span class="text-xs">/mo</span></div>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="bg-white p-12 rounded-[3.5rem] border-2 border-[#063c52] shadow-xl relative overflow-hidden">
-                                <h3 class="text-[11px] font-black tracking-[0.3em] text-stone-400 uppercase mb-10 flex items-center">
-                                    <span class="mr-4 bg-[#fff975] text-[#063c52] w-9 h-9 flex items-center justify-center rounded-xl border-2 border-[#063c52] font-black text-sm">03</span> Hourly Estimator
-                                </h3>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                                    <div>
-                                        <label class="block text-[11px] font-black uppercase text-[#063c52] mb-4 tracking-widest">Select Service</label>
-                                        <select id="hourly-service" class="w-full bg-stone-50 border-2 border-stone-200 rounded-2xl p-5 text-sm font-black text-[#063c52] outline-none focus:border-[#063c52] transition-colors cursor-pointer appearance-none shadow-sm">
-                                            <option value="15">Expert Bookkeeping ($15/hr)</option>
-                                            <option value="25">Financial Reporting ($25/hr)</option>
-                                            <option value="20">Cleanup & Cleaning ($20/hr)</option>
-                                            <option value="25">Bank Reconciliation ($25/hr)</option>
-                                            <option value="25">System Integration ($25/hr)</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label class="block text-[11px] font-black uppercase text-[#063c52] mb-4 tracking-widest">Projected Work: <span id="hours-val" class="text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full ml-2">0 hrs</span></label>
-                                        <input type="range" id="hourly-range" min="0" max="100" value="0" class="w-full h-3 bg-stone-200 rounded-lg appearance-none cursor-pointer mt-4">
-                                        <div class="flex justify-between text-[10px] font-black text-stone-400 mt-4 uppercase tracking-tighter">
-                                            <span>Start</span>
-                                            <span>Mid (50h)</span>
-                                            <span>Enterprise (100h)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-10 pt-10 border-t border-stone-100 flex justify-between items-center">
-                                    <span class="text-xs font-black text-stone-400 uppercase tracking-widest">Calculated Subtotal:</span>
-                                    <span class="text-4xl font-black text-[#063c52] tracking-tighter" id="hourly-subtotal">$0</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="lg:col-span-5 p-10 md:p-16 bg-white flex flex-col justify-center items-center relative border-t-2 lg:border-t-0 lg:border-l-2 border-stone-100 text-center">
-                        <div class="mb-12 z-10">
-                            <h3 class="text-[11px] font-black text-stone-400 uppercase tracking-[0.5em] mb-6 italic">Quote Projection</h3>
-                            <div class="text-9xl font-black text-[#063c52] tracking-tighter mb-4 leading-none drop-shadow-sm" id="total-cost">$0</div>
-                            <button onclick="copyPrice()" class="text-[10px] font-black text-[#063c52]/50 hover:text-[#063c52] uppercase tracking-widest mb-8 border-b border-transparent hover:border-[#063c52] transition-all">Click to Copy Price</button>
-                            <br>
-                            <div class="inline-flex items-center space-x-4 bg-[#fff975] border-2 border-[#063c52] text-[#063c52] px-10 py-4 rounded-full text-sm font-black uppercase shadow-lg">
-                                <span>Negotiable Plan</span>
-                                <span class="bg-[#063c52] text-white w-6 h-6 flex items-center justify-center rounded-full text-[10px] font-black">&#x2714;</span>
-                            </div>
-                        </div>
-                        
-                        <div class="chart-container z-10">
-                            <canvas id="costBreakdownChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="custom" class="mb-28 scroll-mt-24">
-            <div class="bg-[#fff975] p-12 md:p-20 rounded-[5rem] border-4 border-[#063c52] shadow-[30px_30px_0px_0px_#063c52]">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                    <div>
-                        <h2 class="text-6xl md:text-7xl font-black text-[#063c52] uppercase italic leading-none mb-10">What more?</h2>
-                        <p class="text-3xl font-bold text-[#063c52] mb-12 leading-tight tracking-tight">Do you have a specific service in mind? Or a complex coins bank that needs specialized care?</p>
-                        <div class="space-y-6">
-                            <div class="flex items-center space-x-6 bg-white/70 p-6 rounded-[2rem] border-2 border-[#063c52] shadow-sm">
-                                <div class="bg-[#063c52] px-4 py-2 rounded-xl text-[#fff975] font-black italic text-xs tracking-widest uppercase">Special</div>
-                                <p class="text-sm font-black text-[#063c52] uppercase italic tracking-tight">Customized plans that fit your coins bank perfectly.</p>
-                            </div>
-                            <div class="flex items-center space-x-6 bg-white/70 p-6 rounded-[2rem] border-2 border-[#063c52] shadow-sm">
-                                <div class="bg-[#063c52] px-4 py-2 rounded-xl text-[#fff975] font-black italic text-xs tracking-widest uppercase">Partner</div>
-                                <p class="text-sm font-black text-[#063c52] uppercase italic tracking-tight">Open to negotiation for high-volume partnerships.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-[#063c52] p-16 rounded-[4.5rem] text-white text-center shadow-2xl">
-                        <div class="w-24 h-24 mx-auto bg-[#fff975] rounded-[2rem] flex items-center justify-center text-4xl font-black text-[#063c52] italic mb-10 border-4 border-white transform rotate-6">C</div>
-                        <h3 class="text-4xl font-black uppercase italic mb-10 text-[#fff975]">The Custom Path</h3>
-                        <p class="text-stone-300 text-lg mb-12 font-medium leading-relaxed">Reach out directly for a personalized session to discuss your business needs.</p>
-                        <a href="https://coinfetti4.wordpress.com/lets-chat/" target="_blank" class="block bg-[#fff975] text-[#063c52] font-black uppercase tracking-widest py-7 rounded-3xl text-sm hover:scale-105 transition-all shadow-[0_15px_30px_rgba(255,249,117,0.3)] btn-hover">Let's Chat Now</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="details" class="mb-28 scroll-mt-24">
-            <div class="flex items-center space-x-10 mb-16">
-                <h2 class="text-5xl font-black text-[#063c52] uppercase italic leading-none">Global Services</h2>
-                <div class="flex-grow h-3 bg-stone-100 rounded-full"></div>
-            </div>
-
-            <div class="flex flex-wrap gap-4 mb-14 bg-stone-50 p-3 rounded-[2.5rem]" id="tabs-nav">
-                <button class="flex-1 px-10 py-7 text-xs font-black uppercase tracking-[0.2em] transition-all rounded-[2rem] bg-[#063c52] text-white shadow-2xl" data-target="tab-bookkeeping">01 Bookkeeping</button>
-                <button class="flex-1 px-10 py-7 text-xs font-black uppercase tracking-[0.2em] transition-all rounded-[2rem] text-stone-400 hover:text-[#063c52]" data-target="tab-tax">02 Rwanda Tax</button>
-                <button class="flex-1 px-10 py-7 text-xs font-black uppercase tracking-[0.2em] transition-all rounded-[2rem] text-stone-400 hover:text-[#063c52]" data-target="tab-advisory">03 Global Advisory</button>
-            </div>
-
-            <div class="bg-white p-6 sm:p-16 border-4 border-[#063c52] rounded-[5rem] shadow-2xl">
+            <div class="text-center max-w-4xl mx-auto mb-28">
+                <h2 class="text-[#063c52] font-black italic text-xl mb-8 tracking-tight">"Your Coins Called — They Want a Little Confetti !!!"</h2>
+                <h1 class="text-3xl md:text-5xl font-black text-[#063c52] mb-12 leading-tight uppercase italic tracking-tighter">
+                    A financial story <br><span class="bg-[#fff975] px-4 shadow-[-8px_8px_0px_0px_#063c52]">well told</span><br>
+                    is a business well managed.
+                </h1>
+                <p class="text-xl font-medium text-stone-600 mb-14 max-w-2xl mx-auto">Custom financial packages built for international growth and compliance excellence.</p>
                 
-                <div id="tab-bookkeeping" class="tab-content active">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        <div class="p-12 bg-[#fff975] border-2 border-[#063c52] rounded-[4rem] shadow-md transition-transform hover:scale-[1.02]">
-                            <div class="flex justify-between items-start mb-12">
-                                <span class="font-black text-[#063c52] uppercase text-[11px] tracking-[0.3em] opacity-60">Fixed Monthly</span>
-                                <span class="font-black text-[#063c52] text-5xl tracking-tighter">$150/mo</span>
-                            </div>
-                            <p class="text-lg text-[#063c52] font-bold leading-relaxed mb-10 italic">Standard maintenance for up to 50 transactions.</p>
-                            <a href="https://coinfetti4.wordpress.com/lets-chat/" target="_blank" class="text-xs font-black text-[#063c52] uppercase underline underline-offset-8 decoration-2">Custom high-volume pricing &rarr;</a>
-                        </div>
-                        <div class="p-12 bg-stone-50 border-2 border-stone-100 rounded-[4rem] hover:border-[#063c52] transition-all">
-                            <div class="flex justify-between items-start mb-12">
-                                <span class="font-black text-stone-400 uppercase text-[11px] tracking-[0.3em]">Cleaning Rate</span>
-                                <span class="font-black text-[#063c52] text-5xl tracking-tighter">$20/hr</span>
-                            </div>
-                            <p class="text-lg text-stone-500 font-medium leading-relaxed">Fixing historical records and organizing data.</p>
-                        </div>
-                        <div class="p-12 bg-stone-50 border-2 border-stone-100 rounded-[4rem] hover:border-[#063c52] transition-all">
-                            <div class="flex justify-between items-start mb-12">
-                                <span class="font-black text-stone-400 uppercase text-[11px] tracking-[0.3em]">Reconciliation</span>
-                                <span class="font-black text-[#063c52] text-5xl tracking-tighter">$25/hr</span>
-                            </div>
-                            <p class="text-lg text-stone-500 font-medium leading-relaxed">Cross-border bank reconciliation for ledger accuracy.</p>
-                        </div>
-                        <div class="p-12 bg-[#063c52] text-white rounded-[4rem] flex flex-col justify-center shadow-2xl relative overflow-hidden">
-                            <div class="flex justify-between items-center mb-12">
-                                <span class="font-black text-[#fff975] uppercase text-[11px] tracking-[0.3em]">General Hourly</span>
-                                <span class="font-black text-[#fff975] text-5xl tracking-tighter">$15/hr</span>
-                            </div>
-                            <p class="text-lg text-stone-300 font-medium leading-relaxed">Standard hourly rate for routine financial health checks.</p>
-                        </div>
-                    </div>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <button onclick="switchView('chat')" class="bg-[#063c52] text-white px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs shadow-2xl btn-hover">Start the Conversation</button>
+                    <button onclick="document.getElementById('calculator').scrollIntoView({behavior: 'smooth'})" class="border-2 border-[#063c52] px-12 py-6 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-stone-50 btn-hover">Calculate My Quote</button>
                 </div>
+            </div>
 
-                <div id="tab-tax" class="tab-content">
-                    <div class="bg-white border-4 border-stone-50 rounded-[4rem] overflow-hidden shadow-sm">
-                        <table class="w-full text-left">
-                            <thead class="bg-[#063c52] text-white text-[11px] uppercase tracking-[0.5em]">
-                                <tr>
-                                    <th class="p-12">Local Tax Category</th>
-                                    <th class="p-12">Fee (USD)</th>
-                                    <th class="p-12">Compliance Detail</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-lg font-bold text-[#063c52]">
-                                <tr class="border-b-2 border-stone-50 bg-stone-50/30">
-                                    <td class="p-12 uppercase italic tracking-tight">VAT / WHT / Tourism</td>
-                                    <td class="p-12 font-black text-4xl">$30 - $50</td>
-                                    <td class="p-12 text-[11px] uppercase text-stone-400 font-black tracking-widest">Per Filing Period</td>
-                                </tr>
-                                <tr class="border-b-2 border-stone-50">
-                                    <td class="p-12 uppercase italic tracking-tight">CIT: Real Regime</td>
-                                    <td class="p-12 font-black text-4xl">$100</td>
-                                    <td class="p-12 text-[11px] uppercase text-stone-400 font-black tracking-widest">Annual Return Filing</td>
-                                </tr>
-                                <tr class="bg-stone-50/30">
-                                    <td class="p-12 uppercase italic tracking-tight">CIT: Lump Sum / IQP</td>
-                                    <td class="p-12 font-black text-4xl">$30</td>
-                                    <td class="p-12 text-[11px] uppercase text-stone-400 font-black tracking-widest">Quarterly Compliance</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div id="tab-advisory" class="tab-content">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        <div class="bg-[#063c52] text-white p-16 rounded-[5rem] relative overflow-hidden group shadow-2xl">
-                            <h4 class="text-[#fff975] font-black uppercase text-[11px] tracking-[0.4em] mb-8 italic">SaaS Integration</h4>
-                            <div class="text-5xl font-black mb-14 italic leading-none tracking-tight">System Global Implementation</div>
-                            <div class="flex items-baseline space-x-5 mb-14">
-                                <span class="text-8xl font-black text-[#fff975] tracking-tighter">$25</span>
-                                <span class="text-stone-500 font-black uppercase text-xs">/ hour</span>
+            <!-- Calculator -->
+            <div id="calculator" class="mb-28 scroll-mt-24">
+                <div class="bg-white rounded-[4rem] shadow-[0_40px_120px_rgba(6,60,82,0.15)] border-2 border-[#063c52] overflow-hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-12">
+                        <div class="lg:col-span-7 p-10 md:p-16 bg-stone-50/40">
+                            <div class="flex items-center space-x-6 mb-14">
+                                <div class="w-4 h-14 bg-[#063c52] rounded-full shadow-lg"></div>
+                                <h2 class="text-4xl font-black text-[#063c52] uppercase italic">The Coin Builder</h2>
                             </div>
-                            <p class="text-lg text-stone-300 font-medium leading-relaxed italic">Complete setup of cloud-accounting infrastructures.</p>
+                            
+                            <div class="space-y-16">
+                                <div>
+                                    <h3 class="text-[11px] font-black tracking-[0.3em] text-stone-400 uppercase mb-8 flex items-center">
+                                        <span class="mr-4 bg-[#063c52] text-[#fff975] w-8 h-8 flex items-center justify-center rounded-xl font-black text-xs">01</span> Reporting Package
+                                    </h3>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                        <label class="relative cursor-pointer group">
+                                            <input type="radio" name="financial" value="500" class="custom-radio peer sr-only" data-label="Full Global FS">
+                                            <div class="p-8 rounded-[2rem] border-2 border-stone-200 transition-all bg-white hover:border-[#063c52] peer-checked:border-[#063c52]">
+                                                <div class="font-black text-[#063c52] uppercase text-[10px] mb-3 opacity-60">Full Annual FS</div>
+                                                <div class="text-[#063c52] font-black text-5xl">$500</div>
+                                                <div class="text-[10px] text-stone-500 mt-5 font-black uppercase italic">Mgmt Report + Stamp</div>
+                                            </div>
+                                        </label>
+                                        <label class="relative cursor-pointer group">
+                                            <input type="radio" name="financial" value="200" class="custom-radio peer sr-only" data-label="Core FS">
+                                            <div class="p-8 rounded-[2rem] border-2 border-stone-200 transition-all bg-white hover:border-[#063c52] peer-checked:border-[#063c52]">
+                                                <div class="font-black text-[#063c52] uppercase text-[10px] mb-3 opacity-60">Core Financials</div>
+                                                <div class="text-[#063c52] font-black text-5xl">$200</div>
+                                                <div class="text-[10px] text-stone-500 mt-5 font-black uppercase italic">Statements Only</div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h3 class="text-[11px] font-black tracking-[0.3em] text-stone-400 uppercase mb-8 flex items-center">
+                                        <span class="mr-4 bg-[#063c52] text-[#fff975] w-8 h-8 flex items-center justify-center rounded-xl font-black text-xs">02</span> Ongoing Support
+                                    </h3>
+                                    <div class="space-y-6">
+                                        <label class="relative flex items-start cursor-pointer group">
+                                            <input type="checkbox" name="monthly_bookkeeping" value="150" class="custom-checkbox peer sr-only" data-label="Bookkeeping (Fixed)">
+                                            <div class="w-full p-8 rounded-[2rem] border-2 border-stone-200 transition-all bg-white hover:border-[#063c52] peer-checked:border-[#063c52] flex justify-between items-center">
+                                                <div>
+                                                    <div class="font-black text-[#063c52] uppercase text-[10px] tracking-widest">Fixed Maintenance</div>
+                                                    <div class="text-[11px] text-stone-400 font-bold italic">Standard 50 transactions monthly</div>
+                                                </div>
+                                                <div class="text-[#063c52] font-black text-4xl">$150<span class="text-xs">/mo</span></div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Hourly Section -->
+                                <div class="bg-white p-12 rounded-[3.5rem] border-2 border-[#063c52] shadow-xl">
+                                    <h3 class="text-[11px] font-black tracking-[0.3em] text-stone-400 uppercase mb-10 flex items-center">
+                                        <span class="mr-4 bg-[#fff975] text-[#063c52] w-9 h-9 flex items-center justify-center rounded-xl border-2 border-[#063c52] font-black text-sm italic">H</span> Hourly Projection
+                                    </h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                        <div>
+                                            <label class="block text-[11px] font-black uppercase text-[#063c52] mb-4 tracking-widest">Select Expert Service</label>
+                                            <select id="hourly-service" class="w-full bg-stone-50 border-2 border-stone-200 rounded-2xl p-5 text-sm font-black text-[#063c52] outline-none">
+                                                <option value="15">Bookkeeping ($15/hr)</option>
+                                                <option value="25">Financial Reporting ($25/hr)</option>
+                                                <option value="20">Cleanup & Cleaning ($20/hr)</option>
+                                                <option value="25">Bank Reconciliation ($25/hr)</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="block text-[11px] font-black uppercase text-[#063c52] mb-4 tracking-widest">Projected Hours: <span id="hours-val" class="text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full ml-2">0</span></label>
+                                            <input type="range" id="hourly-range" min="0" max="100" value="0" class="w-full h-3 bg-stone-200 rounded-lg appearance-none cursor-pointer mt-4">
+                                        </div>
+                                    </div>
+                                    <div class="mt-10 pt-10 border-t border-stone-100 flex justify-between items-center">
+                                        <span class="text-xs font-black text-stone-400 uppercase tracking-widest tracking-widest">Hourly Estimated Total:</span>
+                                        <span class="text-4xl font-black text-[#063c52]" id="hourly-subtotal">$0</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="bg-[#fff975] p-16 border-4 border-[#063c52] rounded-[5rem] flex flex-col justify-between shadow-xl">
-                            <div>
-                                <h4 class="text-[#063c52] font-black uppercase text-[11px] tracking-[0.4em] mb-8 italic">One-Time Setup</h4>
-                                <div class="text-5xl font-black mb-14 italic text-[#063c52] leading-none tracking-tight">Ready-FS Transition</div>
+
+                        <!-- Right: Result -->
+                        <div class="lg:col-span-5 p-10 md:p-16 bg-white flex flex-col justify-center items-center relative border-t-2 lg:border-t-0 lg:border-l-2 border-stone-100">
+                            <div class="text-center mb-12 z-10">
+                                <h3 class="text-[11px] font-black text-stone-400 uppercase tracking-[0.5em] mb-6 italic">Total Estimate</h3>
+                                <div class="text-9xl font-black text-[#063c52] tracking-tighter mb-4 leading-none" id="total-cost">$0</div>
+                                <button onclick="copyQuote()" class="text-[10px] font-black text-stone-400 hover:text-[#063c52] uppercase tracking-widest transition-all mb-8 block mx-auto underline underline-offset-4">Copy Quote</button>
+                                <div class="inline-flex items-center space-x-4 bg-[#fff975] border-2 border-[#063c52] text-[#063c52] px-10 py-4 rounded-full text-sm font-black uppercase shadow-lg">
+                                    <span>Negotiable Plan</span>
+                                    <span class="bg-[#063c52] text-white w-6 h-6 flex items-center justify-center rounded-full text-[10px] font-black">&#x2714;</span>
+                                </div>
                             </div>
-                            <div>
-                                <div class="text-8xl font-black mb-6 text-[#063c52] tracking-tighter">$200 <span class="text-[11px] uppercase text-[#063c52] block font-black mt-4 tracking-[0.3em]">Fixed Setup Fee</span></div>
+                            <div class="chart-container z-10">
+                                <canvas id="costBreakdownChart"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section id="policies" class="grid grid-cols-1 lg:grid-cols-12 gap-14 scroll-mt-24">
-            <div class="lg:col-span-8 bg-[#063c52] text-white p-14 md:p-24 rounded-[5rem] shadow-2xl relative">
-                <h2 class="text-4xl font-black text-[#fff975] uppercase italic mb-16 underline decoration-white underline-offset-[16px] decoration-4">Engagement Policies</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
-                    <div>
-                        <div class="text-7xl font-black opacity-10 mb-8 italic">01</div>
-                        <h4 class="text-[11px] font-black uppercase tracking-[0.3em] mb-5 text-[#fff975]">The 30-Day Rule</h4>
-                        <p class="text-base text-stone-300 font-bold leading-relaxed">Standard turnaround is <span class="text-white">2 weeks</span>. If client-side delays exceed 30 days, projects revert to <span class="text-white font-black">$25/hr</span>.</p>
-                    </div>
-                    <div>
-                        <div class="text-7xl font-black opacity-10 mb-8 italic">02</div>
-                        <h4 class="text-[11px] font-black uppercase tracking-[0.3em] mb-5 text-[#fff975]">The "Ready" Standard</h4>
-                        <p class="text-base text-stone-300 font-bold leading-relaxed">Fixed reporting fees require an organized Trial Balance.</p>
+            <!-- Custom CTA -->
+            <div id="custom" class="mb-28">
+                <div class="bg-[#fff975] p-12 md:p-20 rounded-[5rem] border-4 border-[#063c52] shadow-[30px_30px_0px_0px_#063c52]">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                        <div>
+                            <h2 class="text-6xl md:text-7xl font-black text-[#063c52] uppercase italic leading-none mb-10">What more?</h2>
+                            <p class="text-3xl font-bold text-[#063c52] mb-12 leading-tight">Complex needs? High volume? We build custom solutions for your coins bank.</p>
+                            <div class="space-y-6">
+                                <div class="flex items-center space-x-6 bg-white/70 p-6 rounded-[2rem] border-2 border-[#063c52]">
+                                    <div class="bg-[#063c52] px-4 py-2 rounded-xl text-[#fff975] font-black italic text-xs uppercase">Custom</div>
+                                    <p class="text-sm font-black text-[#063c52] uppercase italic">Flexible plans designed for your growth.</p>
+                                </div>
+                                <div class="flex items-center space-x-6 bg-white/70 p-6 rounded-[2rem] border-2 border-[#063c52]">
+                                    <div class="bg-[#063c52] px-4 py-2 rounded-xl text-[#fff975] font-black italic text-xs uppercase">Offer</div>
+                                    <p class="text-sm font-black text-[#063c52] uppercase italic">High-volume partnership discounts available.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-[#063c52] p-16 rounded-[4.5rem] text-white text-center shadow-2xl">
+                            <div class="w-24 h-24 mx-auto bg-[#fff975] rounded-3xl flex items-center justify-center text-5xl font-black text-[#063c52] italic mb-10 transform rotate-6">C</div>
+                            <h3 class="text-4xl font-black uppercase italic mb-10 text-[#fff975]">Direct Access</h3>
+                            <p class="text-stone-300 text-lg mb-12 font-medium leading-relaxed italic">Talk to a real person about your numbers. Let's make your financial story clear.</p>
+                            <button onclick="switchView('chat')" class="block w-full bg-[#fff975] text-[#063c52] font-black uppercase tracking-widest py-7 rounded-3xl text-sm btn-hover transition-all">Go to Let's Chat</button>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="lg:col-span-4 bg-stone-50 p-12 rounded-[5rem] border-4 border-[#063c52] flex flex-col justify-center items-center text-center shadow-xl">
-                <div class="w-28 h-28 bg-[#063c52] text-[#fff975] rounded-3xl flex items-center justify-center text-5xl font-black italic mb-12 shadow-2xl border-4 border-[#fff975]">C</div>
-                <h2 class="text-3xl font-black text-[#063c52] uppercase italic mb-10">Connect</h2>
-                <div class="space-y-10 text-base font-black text-[#063c52] uppercase tracking-[0.15em]">
-                    <a href="https://coinfetti4.wordpress.com/lets-chat/" target="_blank" class="flex items-center justify-center hover:bg-[#fff975] px-4 py-2 rounded-xl transition-all">
-                        <span class="mr-4 text-2xl">&#x1F4AC;</span> Start Chat
+            <!-- Detailed Tables -->
+            <div id="details" class="mb-28">
+                <div class="flex items-center space-x-10 mb-16">
+                    <h2 class="text-5xl font-black text-[#063c52] uppercase italic">The Full Menu</h2>
+                    <div class="flex-grow h-3 bg-stone-100 rounded-full"></div>
+                </div>
+                
+                <div class="flex flex-wrap gap-4 mb-14 bg-stone-50 p-3 rounded-[2.5rem]" id="tabs-nav">
+                    <button class="flex-1 px-10 py-7 text-xs font-black uppercase tracking-widest rounded-[2rem] bg-[#063c52] text-white" data-target="tab-bookkeeping">Bookkeeping</button>
+                    <button class="flex-1 px-10 py-7 text-xs font-black uppercase tracking-widest rounded-[2rem] text-stone-400 hover:text-[#063c52]" data-target="tab-tax">Rwanda Tax</button>
+                </div>
+
+                <div class="bg-white p-6 sm:p-16 border-4 border-[#063c52] rounded-[5rem] shadow-2xl">
+                    <div id="tab-bookkeeping" class="tab-content active">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                            <div class="p-12 bg-[#fff975] border-2 border-[#063c52] rounded-[4rem]">
+                                <span class="font-black text-[#063c52] uppercase text-[11px] block mb-4">Flat Rate</span>
+                                <div class="text-5xl font-black text-[#063c52] mb-6">$150/mo</div>
+                                <p class="text-lg font-bold italic mb-6 leading-relaxed">Standard maintenance for up to 50 transactions.</p>
+                                <button onclick="switchView('chat')" class="text-xs font-black uppercase underline underline-offset-8">Inquire for high-volume &rarr;</button>
+                            </div>
+                            <div class="p-12 bg-stone-50 rounded-[4rem] border-2 border-stone-100">
+                                <span class="font-black text-stone-400 uppercase text-[11px] block mb-4">Hourly Rates</span>
+                                <div class="space-y-4">
+                                    <div class="flex justify-between border-b border-stone-200 pb-2">
+                                        <span class="font-bold">Bookkeeping</span>
+                                        <span class="font-black">$15/hr</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-stone-200 pb-2">
+                                        <span class="font-bold">Book Cleaning</span>
+                                        <span class="font-black">$20/hr</span>
+                                    </div>
+                                    <div class="flex justify-between border-b border-stone-200 pb-2">
+                                        <span class="font-bold">Reconciliation</span>
+                                        <span class="font-black">$25/hr</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-tax" class="tab-content">
+                        <div class="overflow-hidden rounded-[3rem] border-2 border-[#063c52]">
+                            <table class="w-full text-left">
+                                <thead class="bg-[#063c52] text-white text-[11px] uppercase tracking-widest font-black">
+                                    <tr>
+                                        <th class="p-10">Service</th>
+                                        <th class="p-10">Fee</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-lg font-bold italic">
+                                    <tr class="bg-stone-50"><td class="p-10 border-b border-stone-200">VAT / WHT / Tourism</td><td class="p-10 border-b border-stone-200">$30 - $50</td></tr>
+                                    <tr><td class="p-10 border-b border-stone-200">CIT: Real Regime</td><td class="p-10 border-b border-stone-200">$100</td></tr>
+                                    <tr class="bg-stone-50"><td class="p-10">Lump Sum / IQP</td><td class="p-10">$30</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Policies -->
+            <div id="policies" class="grid grid-cols-1 lg:grid-cols-12 gap-14 scroll-mt-24">
+                <div class="lg:col-span-8 bg-[#063c52] text-white p-14 md:p-24 rounded-[5rem] shadow-2xl relative">
+                    <h2 class="text-4xl font-black text-[#fff975] uppercase italic mb-16 underline underline-offset-[16px] decoration-4">Engagement Rules</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+                        <div>
+                            <span class="text-7xl font-black opacity-10 mb-8 block italic">01</span>
+                            <h4 class="text-[11px] font-black uppercase tracking-widest mb-5 text-[#fff975]">The 30-Day Rule</h4>
+                            <p class="text-base text-stone-300 font-bold leading-relaxed">Projects delayed over 30 days by client move to <span class="text-white font-black">$25/hr</span> rate.</p>
+                        </div>
+                        <div>
+                            <span class="text-7xl font-black opacity-10 mb-8 block italic">02</span>
+                            <h4 class="text-[11px] font-black uppercase tracking-widest mb-5 text-[#fff975]">Audit-Ready Data</h4>
+                            <p class="text-base text-stone-300 font-bold leading-relaxed">Fixed fees require organized records. Messy data cleanup is billed at <span class="text-white font-black">$20/hr</span>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-4 bg-stone-50 p-12 rounded-[5rem] border-4 border-[#063c52] flex flex-col justify-center items-center text-center shadow-xl group hover:bg-white transition-all">
+                    <div class="w-28 h-28 bg-[#063c52] text-[#fff975] rounded-3xl flex items-center justify-center text-5xl font-black italic mb-12 shadow-2xl border-4 border-[#fff975] group-hover:rotate-6 transition-all">C</div>
+                    <h2 class="text-3xl font-black uppercase italic mb-10">Contact</h2>
+                    <div class="space-y-8 text-base font-black uppercase tracking-widest">
+                        <a href="tel:+250793898027" class="block hover:text-[#063c52]/70">+250 793 898 027</a>
+                        <a href="mailto:sales@coinfetti.online" class="block hover:text-[#063c52]/70 lowercase">sales@coinfetti.online</a>
+                    </div>
+                    <div class="w-16 h-1 bg-[#fff975] my-10 rounded-full"></div>
+                    <button onclick="switchView('chat')" class="text-[10px] font-black uppercase underline underline-offset-8">Visit Let's Chat Page</button>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <!-- LET'S CHAT VIEW -->
+    <section id="chat-view" class="view-section">
+        <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 min-h-screen">
+            <div class="text-center mb-16">
+                <div class="w-32 h-32 bg-[#fff975] rounded-[3rem] border-4 border-[#063c52] flex items-center justify-center text-6xl font-black italic text-[#063c52] mx-auto mb-10 shadow-2xl">C</div>
+                <h1 class="text-5xl md:text-7xl font-black text-[#063c52] mb-6 leading-none uppercase italic italic tracking-tighter">Let's Chat</h1>
+                <p class="text-xl font-bold text-stone-500 italic">"Your Coins Called — They Want a Little Confetti !!!"</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- Contact Options -->
+                <div class="space-y-6">
+                    <h2 class="text-xs font-black uppercase tracking-[0.4em] text-stone-400 mb-8">Direct Channels</h2>
+                    
+                    <a href="https://wa.me/250793898027" target="_blank" class="flex items-center p-8 bg-stone-50 border-4 border-stone-100 rounded-[2.5rem] hover:border-[#063c52] transition-all group">
+                        <div class="w-16 h-16 bg-[#063c52] text-white flex items-center justify-center rounded-2xl text-2xl mr-6 group-hover:scale-110 transition-all">&#x1F4AC;</div>
+                        <div>
+                            <span class="block text-[10px] font-black uppercase tracking-widest text-stone-400">WhatsApp Business</span>
+                            <span class="text-xl font-black text-[#063c52]">Start Chatting</span>
+                        </div>
                     </a>
-                    <a href="tel:+250793898027" class="flex items-center justify-center hover:bg-[#fff975] px-4 py-2 rounded-xl transition-all">
-                        <span class="mr-4 text-2xl">&#x1F4F1;</span> +250 793 898 027
+
+                    <a href="mailto:sales@coinfetti.online" class="flex items-center p-8 bg-stone-50 border-4 border-stone-100 rounded-[2.5rem] hover:border-[#063c52] transition-all group">
+                        <div class="w-16 h-16 bg-[#fff975] border-2 border-[#063c52] text-[#063c52] flex items-center justify-center rounded-2xl text-2xl mr-6 group-hover:scale-110 transition-all">&#x1F4E7;</div>
+                        <div>
+                            <span class="block text-[10px] font-black uppercase tracking-widest text-stone-400">Email Sales</span>
+                            <span class="text-xl font-black text-[#063c52] lowercase italic">sales@coinfetti.online</span>
+                        </div>
                     </a>
-                    <a href="mailto:sales@coinfetti.online" class="flex items-center justify-center hover:bg-[#fff975] px-4 py-2 rounded-xl transition-all lowercase">
-                        <span class="mr-4 text-2xl">&#x1F4E7;</span> sales@coinfetti.online
+
+                    <a href="tel:+250793898027" class="flex items-center p-8 bg-stone-50 border-4 border-stone-100 rounded-[2.5rem] hover:border-[#063c52] transition-all group">
+                        <div class="w-16 h-16 bg-black text-white flex items-center justify-center rounded-2xl text-2xl mr-6 group-hover:scale-110 transition-all">&#x1F4F1;</div>
+                        <div>
+                            <span class="block text-[10px] font-black uppercase tracking-widest text-stone-400">Voice Support</span>
+                            <span class="text-xl font-black text-[#063c52]">+250 793 898 027</span>
+                        </div>
                     </a>
                 </div>
-                <div class="w-20 h-2 bg-[#fff975] my-12 rounded-full"></div>
-                <p class="text-[10px] font-black uppercase tracking-[0.5em] text-stone-400">Trusted Global Invoices</p>
-            </div>
-        </section>
-    </main>
 
-    <footer class="bg-[#063c52] text-stone-500 py-32 text-center text-[11px] uppercase tracking-[0.5em] mt-40 border-t-8 border-[#fff975]">
+                <!-- Messaging Prompt -->
+                <div class="bg-[#063c52] text-white p-12 rounded-[4rem] shadow-2xl flex flex-col justify-center">
+                    <h3 class="text-3xl font-black text-[#fff975] uppercase italic mb-8">Customized Plan?</h3>
+                    <p class="text-stone-300 font-bold mb-10 leading-relaxed italic">Tell us about your business, your transaction volume, and your goals. We respond to all serious inquiries within 24 hours with a plan that fits your bank perfectly.</p>
+                    <div class="w-full h-1 bg-[#fff975]/30 mb-10 rounded-full"></div>
+                    <p class="text-[10px] font-black uppercase tracking-[0.3em] text-[#fff975]">Global Financial Excellence</p>
+                </div>
+            </div>
+
+            <div class="mt-20 text-center">
+                <button onclick="switchView('pricing')" class="text-xs font-black uppercase underline underline-offset-8 decoration-2 text-[#063c52]">Return to Pricing Explorer &larr;</button>
+            </div>
+        </main>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#063c52] text-stone-500 py-32 text-center text-[11px] uppercase tracking-[0.5em] mt-24 border-t-8 border-[#fff975]">
         <div class="flex flex-col items-center mb-16">
             <div class="w-24 h-24 bg-white/10 rounded-[2rem] flex items-center justify-center text-4xl font-black text-[#fff975] italic mb-10 border-2 border-[#fff975]/30">C</div>
-            <p class="text-[#fff975] font-black italic text-xl tracking-tight normal-case mb-8">"Your Coins Called — They Want a Little Confetti !!!"</p>
-            <div class="flex space-x-6 mb-12">
-                <a href="https://coinfetti4.wordpress.com/lets-chat/" target="_blank" class="bg-white/5 hover:bg-white/20 text-white px-6 py-3 rounded-xl transition-all font-black uppercase tracking-widest border border-white/10 italic">Start Chat</a>
-                <a href="https://coinfetti.online" target="_blank" class="bg-white/5 hover:bg-white/20 text-white px-6 py-3 rounded-xl transition-all font-black lowercase tracking-widest border border-white/10">coinfetti.online</a>
+            <p class="text-[#fff975] font-black italic text-xl tracking-tight normal-case mb-12 italic">"Your Coins Called — They Want a Little Confetti !!!"</p>
+            
+            <div class="flex space-x-6">
+                <a href="mailto:sales@coinfetti.online" class="bg-white/5 hover:bg-white/20 text-white px-8 py-3 rounded-xl transition-all font-black lowercase tracking-widest border border-white/10 italic">sales@coinfetti.online</a>
+                <button onclick="switchView('chat')" class="bg-[#fff975] text-[#063c52] px-8 py-3 rounded-xl transition-all font-black uppercase tracking-widest">Let's Chat</button>
             </div>
         </div>
+        
         <div class="mb-8 font-black text-white text-5xl tracking-tighter uppercase italic">Coinfetti &copy; 2026</div>
-        <p class="max-w-2xl mx-auto opacity-40 mb-8 px-10 text-white tracking-widest italic leading-loose">Global Financial Storytelling. Digital Bookkeeping. Compliance Excellence.</p>
+        <p class="max-w-2xl mx-auto opacity-40 mb-12 px-10 text-white tracking-widest italic leading-loose">Global Financial Storytelling. Digital Bookkeeping. Compliance Excellence. Trusted by International SMEs.</p>
         <p class="text-[#fff975]/90 tracking-[0.2em] font-black text-sm">+250 793 898 027</p>
     </footer>
 
     <script>
+        function switchView(viewId) {
+            document.querySelectorAll('.view-section').forEach(section => section.classList.remove('active'));
+            document.getElementById(viewId + '-view').classList.add('active');
+            
+            // Update Nav State
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active-nav'));
+            document.getElementById('nav-' + viewId).classList.add('active-nav');
+            
+            window.scrollTo(0,0);
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const radioInputs = document.querySelectorAll('input[name="financial"]');
             const checkboxInputs = document.querySelectorAll('input[type="checkbox"]');
@@ -455,7 +490,7 @@
                 const hours = parseInt(hourlyRange.value);
                 const hourlyTotal = rate * hours;
                 
-                hoursValDisplay.innerText = hours + ' hrs';
+                hoursValDisplay.innerText = hours;
                 hourlySubtotalDisplay.innerText = '$' + hourlyTotal;
                 
                 if (hourlyTotal > 0) {
@@ -470,11 +505,15 @@
                 breakdownChart.update();
             }
 
-            window.copyPrice = function() {
+            window.copyQuote = function() {
                 const price = totalDisplay.innerText;
-                navigator.clipboard.writeText(price).then(() => {
-                    alert('Price copied: ' + price);
-                });
+                const dummy = document.createElement("textarea");
+                document.body.appendChild(dummy);
+                dummy.value = "Coinfetti Quote Estimate: " + price;
+                dummy.select();
+                document.execCommand("copy");
+                document.body.removeChild(dummy);
+                alert('Quote copied to clipboard!');
             }
 
             radioInputs.forEach(input => input.addEventListener('change', calculateTotals));
@@ -489,11 +528,11 @@
                 button.addEventListener('click', () => {
                     const targetId = button.getAttribute('data-target');
                     tabButtons.forEach(btn => {
-                        btn.classList.remove('bg-[#063c52]', 'text-white', 'shadow-2xl');
+                        btn.classList.remove('bg-[#063c52]', 'text-white');
                         btn.classList.add('text-stone-400');
                     });
                     button.classList.remove('text-stone-400');
-                    button.classList.add('bg-[#063c52]', 'text-white', 'shadow-2xl');
+                    button.classList.add('bg-[#063c52]', 'text-white');
                     tabContents.forEach(content => content.classList.remove('active'));
                     document.getElementById(targetId).classList.add('active');
                 });
