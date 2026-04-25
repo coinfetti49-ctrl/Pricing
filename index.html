@@ -36,7 +36,7 @@
             position: relative; 
             cursor: pointer; 
             transition: all 0.2s ease;
-            font-weight: 700;
+            font-weight: 800;
             text-transform: uppercase;
             font-size: 11px;
             letter-spacing: 0.08em;
@@ -78,10 +78,10 @@
 </head>
 <body class="antialiased selection:bg-[#fff975] selection:text-[#063c52]">
 
-    <!-- Editorial Header (Two-Level) -->
+    <!-- Editorial Header Style -->
     <header class="bg-white sticky top-0 z-50 shadow-sm border-b">
-        <!-- Top Row: Identity -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+        <!-- Top Row: Logo -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center">
             <div class="flex items-center space-x-4 cursor-pointer" onclick="switchView('home')">
                 <div class="w-12 h-12 rounded-full border-2 border-[#063c52] overflow-hidden bg-[#fff975] flex items-center justify-center">
                     <img src="logo.jpeg" alt="c" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
@@ -89,15 +89,14 @@
                 </div>
                 <div class="flex flex-col">
                     <span class="text-4xl font-black text-[#063c52] italic leading-none brand-text lowercase tracking-tighter">coinfetti</span>
-                    <span class="text-[9px] font-bold text-[#063c52] uppercase tracking-[0.1em] mt-1 opacity-70 italic">your coin translator</span>
                 </div>
             </div>
         </div>
 
-        <!-- Navigation Row (Brand Yellow) -->
+        <!-- Navigation Row (Yellow) -->
         <div class="bg-[#fff975] border-y border-[#063c52]/10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-14">
-                <nav class="flex items-center space-x-8">
+                <nav class="flex items-center space-x-10">
                     <button onclick="switchView('home')" class="nav-link text-[#063c52]">Home Page</button>
                     
                     <div class="relative dropdown">
@@ -114,7 +113,6 @@
                         <button class="nav-link text-[#063c52] flex items-center">Services <span class="ml-1 text-[8px]">&#x25BC;</span></button>
                         <div class="dropdown-menu absolute hidden bg-white border-2 border-[#063c52] mt-0 py-2 w-48 rounded-xl shadow-xl z-50">
                             <button onclick="switchView('pricing')" class="block w-full text-left px-5 py-3 hover:bg-[#fff975] transition-all text-[10px] font-black uppercase">Pricing Explorer</button>
-                            <button onclick="switchView('pricing')" class="block w-full text-left px-5 py-3 hover:bg-[#fff975] transition-all text-[10px] font-black uppercase">Tax Services</button>
                         </div>
                     </div>
 
@@ -124,6 +122,7 @@
 
                 <div class="flex items-center space-x-6">
                     <button onclick="window.open('https://coinfetti4.wordpress.com/miss-me-already/', '_blank')" class="bg-black text-white px-8 h-14 flex items-center font-black text-xs uppercase tracking-widest hover:bg-[#063c52] transition-all">Subscribe</button>
+                    <span class="text-[9px] font-black text-[#063c52] uppercase tracking-[0.2em] hidden lg:block opacity-60 italic">your coin translator</span>
                 </div>
             </div>
         </div>
@@ -131,17 +130,16 @@
 
     <!-- HOME VIEW -->
     <section id="home-view" class="view-section active">
-        <!-- Hero -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-            <h2 class="text-[#063c52] font-black italic text-lg mb-6 tracking-tight">"Your Coins Called — They Want a Little Confetti !!!"</h2>
-            <h1 class="text-3xl md:text-5xl font-black text-[#063c52] mb-10 leading-[1.8] uppercase italic tracking-tighter max-w-4xl mx-auto">
+            <h2 class="text-[#063c52] font-black italic text-lg mb-8 tracking-tight">"Your Coins Called — They Want a Little Confetti !!!"</h2>
+            <h1 class="text-3xl md:text-5xl font-black text-[#063c52] mb-14 leading-[2] uppercase italic tracking-tighter max-w-4xl mx-auto">
                 A financial story <br>
-                <span class="bg-[#fff975] px-3 shadow-[-10px_10px_0px_0px_#063c52]">well told</span><br>
+                <span class="bg-[#fff975] px-4 shadow-[-10px_10px_0px_0px_#063c52]">well told</span><br>
                 is a business well managed.
             </h1>
-            <p class="text-lg font-medium text-stone-500 mb-12 max-w-2xl mx-auto italic leading-relaxed">High-end digital bookkeeping & financial storytelling for international SMEs.</p>
+            <p class="text-xl font-medium text-stone-500 mb-14 max-w-2xl mx-auto italic leading-relaxed">High-end digital bookkeeping & financial storytelling for international SMEs.</p>
             <div class="flex flex-wrap justify-center gap-6">
-                <button onclick="switchView('pricing')" class="bg-[#063c52] text-white px-10 py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] shadow-xl btn-hover">Interactive Pricing</button>
+                <button onclick="switchView('pricing')" class="bg-[#063c52] text-white px-10 py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] shadow-xl btn-hover transition-all">Explore Pricing</button>
                 <button onclick="switchView('about')" class="border-2 border-[#063c52] px-10 py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] hover:bg-[#fff975] transition-all">Read Our Story</button>
             </div>
         </section>
@@ -152,17 +150,17 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <div>
                         <h2 class="text-5xl font-black text-[#063c52] uppercase italic mb-8 leading-tight">Numbers deserve a <span class="underline decoration-[#fff975] decoration-4 underline-offset-8">Narrative.</span></h2>
-                        <p class="text-lg text-stone-600 leading-relaxed mb-8 italic">We don't just "do the books." We build the financial backbone of your dreams using digital tools that let you scale globally with confidence.</p>
+                        <p class="text-lg text-stone-600 leading-relaxed mb-8 italic">We don't just "do the books." We build the financial spine of your company using modern digital tools that let you scale globally with confidence.</p>
                         <div class="flex space-x-4">
                             <div class="bg-white p-6 rounded-2xl border-2 border-[#063c52] shadow-sm flex-1">
                                 <span class="text-2xl mb-2 block">&#x1F310;</span>
                                 <h4 class="font-black uppercase text-[10px] mb-1">Global</h4>
-                                <p class="text-[11px] text-stone-400">Cross-border expertise.</p>
+                                <p class="text-[11px] text-stone-400">Compliance experts.</p>
                             </div>
                             <div class="bg-white p-6 rounded-2xl border-2 border-[#063c52] shadow-sm flex-1">
                                 <span class="text-2xl mb-2 block">&#x1F4BB;</span>
-                                <h4 class="font-black uppercase text-[10px] mb-1">Digital</h4>
-                                <p class="text-[11px] text-stone-400">SaaS powered insights.</p>
+                                <h4 class="font-black uppercase text-[10px] mb-1">Modern</h4>
+                                <p class="text-[11px] text-stone-400">SaaS powered books.</p>
                             </div>
                         </div>
                     </div>
@@ -178,19 +176,17 @@
             </div>
         </section>
 
-        <!-- Newsletter Section (Redirect Logic) -->
-        <section id="newsletter" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-[#fff975] border-4 border-[#063c52] rounded-[4rem] p-12 md:p-20 text-center">
+        <!-- Newsletter Section -->
+        <section id="newsletter" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="bg-[#fff975] border-4 border-[#063c52] rounded-[4rem] p-12 md:p-20">
                 <h2 class="text-5xl font-black text-[#063c52] uppercase italic mb-6">Join the Confetti Club</h2>
-                <p class="text-xl font-bold italic text-[#063c52] mb-10 max-w-xl mx-auto italic leading-relaxed">Financial tips, tax alerts, and storytelling insights delivered directly to you.</p>
-                <div class="max-w-md mx-auto">
-                    <button onclick="window.open('https://coinfetti4.wordpress.com/miss-me-already/', '_blank')" class="w-full bg-[#063c52] text-white px-10 py-6 rounded-2xl font-black uppercase tracking-widest text-sm btn-hover shadow-2xl transition-all">Subscribe to Newsletter &rarr;</button>
-                </div>
+                <p class="text-xl font-bold italic text-[#063c52] mb-10 max-w-xl mx-auto italic">Financial tips and storytelling insights delivered directly to your inbox.</p>
+                <button onclick="window.open('https://coinfetti4.wordpress.com/miss-me-already/', '_blank')" class="bg-black text-white px-12 py-5 rounded-2xl font-black uppercase tracking-widest text-xs btn-hover transition-all">Subscribe Now &rarr;</button>
             </div>
         </section>
     </section>
 
-    <!-- ABOUT VIEW (Our Story Content Updated) -->
+    <!-- ABOUT VIEW (Our Story) -->
     <section id="about-view" class="view-section">
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
@@ -198,8 +194,8 @@
                     <div class="bg-white rounded-[3.5rem] p-12">
                         <h1 class="text-6xl font-black text-[#063c52] uppercase italic mb-8">Our Story</h1>
                         <p class="text-xl text-stone-600 leading-relaxed mb-8 serif-font italic">Accounting? Boring. Complicated. Stressful. (At least… that’s what everyone thinks).</p>
-                        <p class="text-base text-stone-500 mb-6 leading-loose italic">But what if numbers weren’t silent rows in a spreadsheet? What if they could laugh, argue, throw parties, and tell you their secrets? That’s exactly why Coinfetti was born — not as a company, not as a newsletter at first, but as an imaginary friend for your coins.</p>
-                        <p class="text-base text-stone-500 leading-loose mb-10 italic">In my head, coins were never just metal or digits. They were alive. They cheered when you saved them, sulked when you ignored them. They had stories worth telling.</p>
+                        <p class="text-base text-stone-500 mb-6 leading-loose italic">But what if numbers weren’t silent rows in a spreadsheet? What if they could laugh, argue, throw parties, and tell you their secrets? That’s exactly why Coinfetti was born — not as a company, but as an imaginary friend for your coins.</p>
+                        <p class="text-base text-stone-500 leading-loose mb-10 italic">In my head, coins were never just metal or digits. They were alive. They had conversations. They cheered when you saved them, sulked when you ignored them. They had stories worth telling.</p>
                         <a href="https://coinfetti4.wordpress.com/2025/09/13/hello-world/" target="_blank" class="bg-[#063c52] text-white px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] btn-hover inline-block shadow-lg">Read Full Story on Blog</a>
                     </div>
                 </div>
@@ -208,15 +204,15 @@
                     <div class="space-y-10">
                         <div class="border-l-4 border-[#fff975] pl-8">
                             <h4 class="font-black uppercase text-[10px] mb-2">A Newsletter</h4>
-                            <p class="text-xl font-bold italic">Your weekly chat with money, minus the boring jargon.</p>
+                            <p class="text-xl font-bold italic">Your weekly chat with money, minus the jargon.</p>
                         </div>
                         <div class="border-l-4 border-[#fff975] pl-8">
                             <h4 class="font-black uppercase text-[10px] mb-2">A Website</h4>
-                            <p class="text-xl font-bold italic">A safe home for all those stories. Catch up anytime.</p>
+                            <p class="text-xl font-bold italic">A safe home for those dramatic coin stories.</p>
                         </div>
                         <div class="border-l-4 border-[#fff975] pl-8">
                             <h4 class="font-black uppercase text-[10px] mb-2">A Service Provider</h4>
-                            <p class="text-xl font-bold italic">Translating “money language” into human language.</p>
+                            <p class="text-xl font-bold italic">Translating money language into human language.</p>
                         </div>
                     </div>
                 </div>
@@ -224,7 +220,7 @@
         </main>
     </section>
 
-    <!-- MEET MOM VIEW (Reham's Intro Updated) -->
+    <!-- MEET MOM VIEW -->
     <section id="meet-mum-view" class="view-section">
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <div class="max-w-4xl mx-auto bg-stone-50 border-4 border-[#063c52] rounded-[5rem] overflow-hidden shadow-2xl">
@@ -241,12 +237,12 @@
                         <h1 class="text-5xl font-black text-[#063c52] uppercase italic mb-8">MEET MOM</h1>
                         <p class="text-2xl font-bold italic text-stone-400 mb-8 leading-relaxed italic">"Coins speak, and numbers are their words."</p>
                         <div class="space-y-6 text-stone-600 leading-relaxed italic text-lg">
-                            <p>Now, let me introduce you to my creator—Reham. She’s a passionate young graduate with 3 years of marketing experience and a strong background in accounting.</p>
-                            <p>Reham graduated top of her class because of her love for numbers. She created me to share her thoughts and help the world see accounting differently—not as something boring, but as a living language.</p>
+                            <p>Now, let me introduce you to my creator—Reham (you can call her my mom). She’s a passionate young graduate with 3 years of marketing experience and a strong background in accounting.</p>
+                            <p>Reham graduated top of her class because of her love for numbers. She created me to share her thoughts and help the world see accounting as a living language.</p>
                             <p>If you listen carefully, you’ll realize accounting isn’t just about doing math—it’s about understanding what the numbers are trying to say.</p>
                         </div>
                         <div class="mt-12">
-                            <button onclick="switchView('chat')" class="bg-[#063c52] text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] btn-hover shadow-xl">Contact Reham Directly</button>
+                            <button onclick="switchView('chat')" class="bg-[#063c52] text-white px-10 py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] btn-hover shadow-xl">Connect with Reham</button>
                         </div>
                     </div>
                 </div>
@@ -254,7 +250,7 @@
         </main>
     </section>
 
-    <!-- PRICING VIEW (Original Restored Calculator) -->
+    <!-- PRICING VIEW (Original Calculator Restored) -->
     <section id="pricing-view" class="view-section">
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div class="text-center max-w-4xl mx-auto mb-16">
@@ -262,12 +258,12 @@
                 <p class="text-lg font-bold italic text-stone-400 mt-4 leading-relaxed max-w-lg mx-auto italic">Select the confetti you need for your bank.</p>
             </div>
 
-            <div class="bg-white rounded-[4rem] shadow-[0_40px_120px_rgba(6,60,82,0.15)] border-4 border-[#063c52] overflow-hidden mb-20">
+            <div class="bg-white rounded-[4rem] shadow-[0_40px_120px_rgba(6,60,82,0.15)] border-4 border-[#063c52] overflow-hidden mb-28">
                 <div class="grid grid-cols-1 lg:grid-cols-12">
                     <div class="lg:col-span-7 p-10 md:p-16 bg-stone-50/40">
                         <div class="flex items-center space-x-6 mb-14">
                             <div class="w-4 h-14 bg-[#063c52] rounded-full shadow-lg"></div>
-                            <h2 class="text-4xl font-black text-[#063c52] uppercase italic tracking-tight">The Coin Builder</h2>
+                            <h2 class="text-4xl font-black text-[#063c52] uppercase italic tracking-tight">Interactive Estimator</h2>
                         </div>
                         <div class="space-y-16" id="calculator-form">
                             <div>
@@ -278,7 +274,7 @@
                                     <label class="relative cursor-pointer group">
                                         <input type="radio" name="financial" value="500" class="custom-radio peer sr-only" data-label="Full Global FS">
                                         <div class="p-8 rounded-[2rem] border-2 border-stone-200 transition-all bg-white hover:border-[#063c52] peer-checked:border-[#063c52]">
-                                            <div class="font-black text-[#063c52] uppercase text-[10px] mb-3 opacity-60">Full Package</div>
+                                            <div class="font-black text-[#063c52] uppercase text-[10px] mb-3 tracking-widest opacity-60">Full Package</div>
                                             <div class="text-[#063c52] font-black text-5xl">$500</div>
                                             <div class="text-[10px] text-stone-500 mt-5 font-black uppercase italic tracking-tighter">Annual FS + Mgmt Report</div>
                                         </div>
@@ -286,7 +282,7 @@
                                     <label class="relative cursor-pointer group">
                                         <input type="radio" name="financial" value="200" class="custom-radio peer sr-only" data-label="Core FS">
                                         <div class="p-8 rounded-[2rem] border-2 border-stone-200 transition-all bg-white hover:border-[#063c52] peer-checked:border-[#063c52]">
-                                            <div class="font-black text-[#063c52] uppercase text-[10px] mb-3 opacity-60">Statements Only</div>
+                                            <div class="font-black text-[#063c52] uppercase text-[10px] mb-3 tracking-widest opacity-60">Statements Only</div>
                                             <div class="text-[#063c52] font-black text-5xl">$200</div>
                                             <div class="text-[10px] text-stone-500 mt-5 font-black uppercase italic tracking-tighter">Core Financial Data</div>
                                         </div>
@@ -312,11 +308,11 @@
                             </div>
                             <div class="bg-white p-12 rounded-[3.5rem] border-2 border-[#063c52] shadow-xl relative overflow-hidden">
                                 <h3 class="text-[11px] font-black tracking-[0.3em] text-stone-400 uppercase mb-10 flex items-center">
-                                    <span class="mr-4 bg-[#fff975] text-[#063c52] w-9 h-9 flex items-center justify-center rounded-xl border-2 border-[#063c52] font-black text-sm">03</span> Hourly Estimator
+                                    <span class="mr-4 bg-[#fff975] text-[#063c52] w-9 h-9 flex items-center justify-center rounded-xl border-2 border-[#063c52] font-black text-sm italic">H</span> Hourly Estimator
                                 </h3>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                                     <div>
-                                        <label class="block text-[11px] font-black uppercase text-[#063c52] mb-4 tracking-widest">Select Service</label>
+                                        <label class="block text-[11px] font-black uppercase text-[#063c52] mb-4 tracking-widest">Select Expert Service</label>
                                         <select id="hourly-service" class="w-full bg-stone-50 border-2 border-stone-200 rounded-2xl p-5 text-sm font-black text-[#063c52] outline-none transition-colors cursor-pointer appearance-none shadow-sm italic">
                                             <option value="15">Expert Bookkeeping ($15/hr)</option>
                                             <option value="25">Financial Reporting ($25/hr)</option>
@@ -344,7 +340,7 @@
                     </div>
                     <div class="lg:col-span-5 p-10 md:p-16 bg-white flex flex-col justify-center items-center relative border-t-2 lg:border-t-0 lg:border-l-2 border-stone-100 text-center">
                         <div class="mb-12 z-10">
-                            <h3 class="text-[11px] font-black text-stone-400 uppercase tracking-[0.5em] mb-6 italic">Quote Projection</h3>
+                            <h3 class="text-[11px] font-black text-stone-400 uppercase tracking-[0.5em] mb-6 italic">Estimate Total</h3>
                             <div class="text-9xl font-black text-[#063c52] tracking-tighter mb-8 leading-none drop-shadow-sm italic" id="total-cost">$0</div>
                             <div class="inline-flex items-center space-x-4 bg-[#fff975] border-2 border-[#063c52] text-[#063c52] px-10 py-4 rounded-full text-sm font-black uppercase shadow-lg">
                                 <span>Negotiable Plan</span>
@@ -357,30 +353,95 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Global Full Menu -->
+            <div class="mt-20">
+                <div class="flex items-center space-x-10 mb-16">
+                    <h2 class="text-5xl font-black text-[#063c52] uppercase italic leading-none">Global Services</h2>
+                    <div class="flex-grow h-3 bg-stone-100 rounded-full"></div>
+                </div>
+
+                <div class="flex flex-wrap gap-4 mb-14 bg-stone-50 p-3 rounded-[2.5rem]" id="tabs-nav">
+                    <button class="flex-1 px-10 py-7 text-xs font-black uppercase tracking-[0.2em] transition-all rounded-[2rem] bg-[#063c52] text-white shadow-2xl" data-target="tab-bookkeeping">01 Bookkeeping</button>
+                    <button class="flex-1 px-10 py-7 text-xs font-black uppercase tracking-[0.2em] transition-all rounded-[2rem] text-stone-400 hover:text-[#063c52]" data-target="tab-tax">02 Rwanda Tax</button>
+                    <button class="flex-1 px-10 py-7 text-xs font-black uppercase tracking-[0.2em] transition-all rounded-[2rem] text-stone-400 hover:text-[#063c52]" data-target="tab-advisory">03 Global Advisory</button>
+                </div>
+
+                <div class="bg-white p-6 sm:p-16 border-4 border-[#063c52] rounded-[5rem] shadow-2xl">
+                    <!-- Tab: Bookkeeping -->
+                    <div id="tab-bookkeeping" class="tab-content active">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                            <div class="p-12 bg-[#fff975] border-2 border-[#063c52] rounded-[4rem]">
+                                <span class="font-black text-[#063c52] uppercase text-[11px] block mb-4 italic tracking-widest">Fixed Monthly</span>
+                                <div class="text-5xl font-black text-[#063c52] mb-6 tracking-tighter italic">$150/mo</div>
+                                <p class="text-lg font-bold italic mb-10 leading-relaxed italic">Standard maintenance for up to 50 transactions.</p>
+                                <button onclick="switchView('chat')" class="text-xs font-black uppercase underline underline-offset-8">Custom high-volume pricing &rarr;</button>
+                            </div>
+                            <div class="p-12 bg-stone-50 rounded-[4rem] border-2 border-stone-100">
+                                <span class="font-black text-stone-400 uppercase text-[11px] block mb-6 italic">Standard Hourly</span>
+                                <div class="space-y-6">
+                                    <div class="flex justify-between border-b border-stone-200 pb-3 italic italic"><span class="font-bold">Bookkeeping</span><span class="font-black">$15/hr</span></div>
+                                    <div class="flex justify-between border-b border-stone-200 pb-3 italic italic"><span class="font-bold">Book Cleaning</span><span class="font-black">$20/hr</span></div>
+                                    <div class="flex justify-between border-b border-stone-200 pb-3 italic italic"><span class="font-bold">Reconciliation</span><span class="font-black">$25/hr</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tab: Rwanda Tax (Fixed content) -->
+                    <div id="tab-tax" class="tab-content">
+                        <div class="bg-white border-4 border-stone-50 rounded-[4rem] overflow-hidden shadow-sm">
+                            <table class="w-full text-left">
+                                <thead class="bg-[#063c52] text-white text-[11px] uppercase tracking-[0.5em]">
+                                    <tr><th class="p-12">Local Tax Category</th><th class="p-12">Fee (USD)</th><th class="p-12">Detail</th></tr>
+                                </thead>
+                                <tbody class="text-lg font-bold text-[#063c52]">
+                                    <tr class="border-b-2 border-stone-50 bg-stone-50/30 italic italic"><td class="p-12 uppercase italic">VAT / WHT / Tourism</td><td class="p-12 font-black text-4xl italic">$30 - $50</td><td class="p-12 text-[11px] uppercase text-stone-400 italic">Per Filing</td></tr>
+                                    <tr class="border-b-2 border-stone-50 italic italic"><td class="p-12 uppercase italic">CIT: Real Regime</td><td class="p-12 font-black text-4xl italic">$100</td><td class="p-12 text-[11px] uppercase text-stone-400 italic">Annual Filing</td></tr>
+                                    <tr class="bg-stone-50/30 italic italic"><td class="p-12 uppercase italic">CIT: Lump Sum / IQP</td><td class="p-12 font-black text-4xl italic">$30</td><td class="p-12 text-[11px] uppercase text-stone-400 italic">Quarterly</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Tab: Advisory -->
+                    <div id="tab-advisory" class="tab-content">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                            <div class="bg-[#063c52] text-white p-16 rounded-[5rem] relative group shadow-2xl overflow-hidden">
+                                <h4 class="text-[#fff975] font-black uppercase text-[11px] mb-8 italic italic">SaaS Integration</h4>
+                                <div class="text-5xl font-black mb-14 italic leading-none tracking-tight">System Global Implementation</div>
+                                <div class="flex items-baseline space-x-5 italic"><span class="text-8xl font-black text-[#fff975] tracking-tighter italic">$25</span><span class="text-stone-500 font-black uppercase text-xs italic">/ hour</span></div>
+                            </div>
+                            <div class="bg-[#fff975] p-16 border-4 border-[#063c52] rounded-[5rem] flex flex-col justify-between shadow-xl">
+                                <h4 class="text-[#063c52] font-black uppercase text-[11px] mb-8 italic tracking-[0.2em] italic">One-Time Setup</h4>
+                                <div class="text-8xl font-black mb-6 text-[#063c52] tracking-tighter italic">$200 <span class="text-[11px] uppercase block font-black mt-4 tracking-[0.3em] italic">Fixed Setup Fee</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </section>
 
-    <!-- INSIGHTS VIEW (Article Links Updated) -->
+    <!-- INSIGHTS VIEW -->
     <section id="posts-view" class="view-section">
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
             <div class="text-center mb-24">
                 <h1 class="text-7xl font-black text-[#063c52] uppercase italic tracking-tighter mb-6 italic">Financial Stories</h1>
-                <p class="text-2xl font-bold italic text-stone-400 italic">Insights from our main knowledge base.</p>
+                <p class="text-2xl font-bold italic text-stone-400 italic">Education, Strategy, and Digital Transformation.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                 <a href="https://coinfetti4.wordpress.com/2026/01/14/stop-the-manual-accounting/" target="_blank" class="bg-stone-50 rounded-[4rem] p-12 border-4 border-[#063c52] hover:bg-[#fff975] transition-all card-shadow">
                     <h3 class="text-3xl font-black text-[#063c52] mb-6 leading-tight italic underline decoration-4 underline-offset-8">Stop Manual Accounting</h3>
-                    <p class="text-stone-500 font-bold mb-10 italic leading-relaxed">Learn why manual entries are the imaginary enemy of your global potential...</p>
+                    <p class="text-stone-500 font-bold mb-10 italic italic leading-relaxed">Learn why manual entries are the imaginary enemy of your potential...</p>
                     <span class="font-black uppercase text-[10px] tracking-[0.3em]">Read Blog Post &rarr;</span>
                 </a>
                 <a href="https://coinfetti4.wordpress.com/2025/12/10/why-cash-basis-lies/" target="_blank" class="bg-stone-50 rounded-[4rem] p-12 border-4 border-[#063c52] hover:bg-[#fff975] transition-all card-shadow">
                     <h3 class="text-3xl font-black text-[#063c52] mb-6 leading-tight italic underline decoration-4 underline-offset-8">Why Cash Basis Lies</h3>
-                    <p class="text-stone-500 font-bold mb-10 italic leading-relaxed">Understanding real financial narratives through accrual-based clarity...</p>
+                    <p class="text-stone-500 font-bold mb-10 italic italic leading-relaxed">Understanding accrual clarity for a better business narrative...</p>
                     <span class="font-black uppercase text-[10px] tracking-[0.3em]">Read Blog Post &rarr;</span>
                 </a>
-                <div class="bg-[#063c52] rounded-[4rem] p-12 text-white flex flex-col justify-center shadow-2xl relative overflow-hidden italic">
+                <div class="bg-[#063c52] rounded-[4rem] p-12 text-white flex flex-col justify-center shadow-2xl relative overflow-hidden italic italic">
                     <h3 class="text-3xl font-black mb-6 text-[#fff975] italic">Full library?</h3>
-                    <p class="mb-10 text-white/70 italic font-bold">Catch up on all the dramatic coin stories on our main WordPress portal.</p>
+                    <p class="mb-10 text-white/70 italic font-bold">Catch up on all the stories on our main WordPress portal.</p>
                     <a href="https://coinfetti4.wordpress.com/posts-2/" target="_blank" class="bg-[#fff975] text-[#063c52] font-black uppercase py-5 rounded-2xl text-center text-[10px] tracking-widest shadow-xl">Visit Main Blog</a>
                 </div>
             </div>
@@ -391,8 +452,8 @@
     <section id="chat-view" class="view-section">
         <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
             <h1 class="text-8xl font-black text-[#063c52] uppercase italic mb-10 tracking-tighter italic italic">Let's Chat</h1>
-            <p class="text-2xl font-bold italic text-stone-400 mb-20">"Your Coins Called — They Want a Little Confetti !!!"</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-14 text-left italic">
+            <p class="text-2xl font-bold italic text-stone-400 mb-20 italic">"Your Coins Called — They Want a Little Confetti !!!"</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-14 text-left italic italic">
                 <div class="space-y-10">
                     <a href="https://wa.me/250793898027" target="_blank" class="flex items-center p-12 bg-stone-50 rounded-[4rem] border-4 border-stone-100 hover:border-[#063c52] hover:bg-[#fff975] transition-all group">
                         <div class="w-20 h-20 bg-[#063c52] text-[#fff975] flex items-center justify-center rounded-2xl text-4xl mr-10 group-hover:rotate-12 transition-all shadow-xl italic">&#x1F4AC;</div>
@@ -403,10 +464,10 @@
                         <span class="text-2xl font-black text-[#063c52] lowercase italic tracking-tight italic italic">sales@coinfetti.online</span>
                     </a>
                 </div>
-                <div class="bg-[#063c52] p-16 rounded-[5rem] text-white flex flex-col justify-center card-shadow relative overflow-hidden">
-                    <h3 class="text-4xl font-black uppercase italic mb-8 text-[#fff975] leading-tight italic italic">Negotiable plan?</h3>
-                    <p class="text-xl text-stone-300 font-bold mb-12 leading-relaxed italic italic italic italic">Talk to Reham directly. build a package that fits your bank perfectly. Response in 24h.</p>
-                    <div class="flex items-center space-x-6 italic italic"><span class="text-4xl italic italic italic">&#x1F4F1;</span><p class="text-2xl font-black text-white tracking-widest italic italic italic">+250 793 898 027</p></div>
+                <div class="bg-[#063c52] p-16 rounded-[5rem] text-white flex flex-col justify-center card-shadow relative overflow-hidden italic italic">
+                    <h3 class="text-4xl font-black uppercase italic mb-8 text-[#fff975] leading-tight italic">Negotiable plan?</h3>
+                    <p class="text-xl text-stone-300 font-bold mb-12 leading-relaxed italic italic italic">Talk to Reham directly. build a package that makes your coins dance.</p>
+                    <div class="flex items-center space-x-6 italic italic"><span class="text-4xl italic italic">&#x1F4F1;</span><p class="text-2xl font-black text-white tracking-widest italic italic">+250 793 898 027</p></div>
                 </div>
             </div>
         </main>
@@ -415,10 +476,10 @@
     <!-- Global Footer -->
     <footer class="bg-[#063c52] text-stone-500 py-32 text-center text-[11px] uppercase tracking-[0.5em] mt-24 border-t-8 border-[#fff975]">
         <div class="w-24 h-24 bg-white/10 rounded-[2.5rem] flex items-center justify-center text-4xl font-black text-[#fff975] italic mb-10 mx-auto border-2 border-[#fff975]/30 shadow-2xl">c</div>
-        <p class="text-[#fff975] font-black italic text-xl tracking-tight normal-case mb-12 italic leading-relaxed italic">"Your Coins Called — They Want a Little Confetti !!!"</p>
+        <p class="text-[#fff975] font-black italic text-xl tracking-tight normal-case mb-12 italic italic leading-relaxed">"Your Coins Called — They Want a Little Confetti !!!"</p>
         <div class="mb-10 font-black text-white text-5xl tracking-tighter italic brand-text lowercase">coinfetti &copy; 2026</div>
-        <p class="max-w-2xl mx-auto opacity-40 mb-12 px-10 text-white tracking-[0.2em] italic leading-loose italic">Global Financial Storytelling. Digital Bookkeeping. Excellence for International SMEs.</p>
-        <p class="text-[#fff975]/90 tracking-[0.3em] font-black text-sm italic">+250 793 898 027 | sales@coinfetti.online</p>
+        <p class="max-w-2xl mx-auto opacity-40 mb-12 px-10 text-white tracking-[0.2em] italic italic leading-loose">Global Financial Storytelling. Digital Bookkeeping. Excellence for International SMEs.</p>
+        <p class="text-[#fff975]/90 tracking-[0.3em] font-black text-sm italic italic">+250 793 898 027 | sales@coinfetti.online</p>
     </footer>
 
     <script>
